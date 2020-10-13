@@ -15,8 +15,8 @@
                         Inventario
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Nuevo</a>
-                        <a class="dropdown-item" href="#">Lista</a>
+                        <a class="dropdown-item" href="/inventory/new">Nuevo</a>
+                        <a class="dropdown-item" href="/inventory">Lista</a>
                         <a class="dropdown-item" href="#">Asignaciones</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">CPU</a>
@@ -28,6 +28,15 @@
                         <a class="dropdown-item" href="#">Redes</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Otros</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Configuración
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/config/categories">Categorias</a>
+                        <a class="dropdown-item" href="/config/brands">Marcas</a>
                     </div>
                 </li>
                 <li class="nav-item">
