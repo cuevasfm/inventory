@@ -17,6 +17,7 @@ class CreatePartsTable extends Migration
             $table->id();
             $table->integer('brand_id');
             $table->string('name_part', 100);
+            $table->integer('category_id');
             $table->string('model', 100)->nullable();
             $table->string('sn', 100)->nullable();
             $table->string('processor', 100)->nullable();

@@ -8,7 +8,7 @@
 </div>
 <br>
 <div class="row">
-    <table class="table">
+    <table class="table table-sm">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -21,7 +21,7 @@
             <tr>
                 <th scope="row">{{$category->id}}</th>
                 <td>{{$category->name_category}}</td>
-                <td><a class="btn btn-primary" href="/config/categories/{{$category->id}}/edit">Edit</a></td>
+                <td><a class="btn btn-primary btn-sm" href="/config/categories/{{$category->id}}/edit">Edit</a></td>
             </tr>
             @endforeach
         </tbody>

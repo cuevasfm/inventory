@@ -14,13 +14,18 @@ class Inventory extends Controller
     public function index()
     {
         return view('inventory.index', [
-            'parts' => Part::all()
+            //'parts' => Part::all()
+            'parts' => Part::select('parts')
+                ->join('brands', 'brands.id', '=', 'parts.brand_id')
+                ->join('categories', 'categories.id', '=', 'parts.category_id')
+                ->select('parts.*', 'brands.name_brand', 'categories.name_category')
+                ->get()
         ]);
-        return(Part::all());
+        return (Part::all());
     }
     public function new()
     {
-        return view('inventory/new',[
+        return view('inventory/new', [
             'categories' => Category::all(),
             'brands' => Brand::all()
         ]);
@@ -29,6 +34,7 @@ class Inventory extends Controller
     {
         $parts = new  Part();
         $parts->name_part = $request->get('name_part');
+        $parts->category_id = $request->get('category_id');
         $parts->brand_id = $request->get('brand_id');
         $parts->model = $request->get('model');
         $parts->sn = $request->get('sn');

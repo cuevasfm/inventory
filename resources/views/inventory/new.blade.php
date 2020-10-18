@@ -20,7 +20,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputState">Categoría</label>
-                    <select id="inputState" class="form-control" name="category" required>
+                    <select id="inputState" class="form-control" name="category_id" required>
                         @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name_category}}</option>
                         @endforeach

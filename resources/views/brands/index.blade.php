@@ -21,7 +21,7 @@
             <tr>
                 <th scope="row">{{$brand->id}}</th>
                 <td>{{$brand->name_brand}}</td>
-                <td><a class="btn btn-primary" href="/config/brands/{{$brand->id}}/edit">Editar</a></td>
+                <td><a class="btn btn-primary btn-sm" href="/config/brands/{{$brand->id}}/edit">Editar</a></td>
             </tr>
             @endforeach
         </tbody>

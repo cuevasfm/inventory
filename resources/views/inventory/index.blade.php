@@ -7,11 +7,12 @@
     <a class="btn btn-primary" href="/inventory/new">Registrar </a>
 </div>
 <div class="row">
-    <table class="table">
+    <table class="table table-sm">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre Parte</th>
+                <th scope="col">Categoría</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Model</th>
                 <th scope="col">S/N</th>
@@ -22,7 +23,8 @@
             <tr>
                 <th scope="row">{{$part->id}}</th>
                 <td>{{$part->name_part}}</td>
-                <td>{{$part->brand_id}}</td>
+                <td>{{$part->name_category}}</td>
+                <td>{{$part->name_brand}}</td>
                 <td>{{$part->model}}</td>
                 <td>{{$part->sn}}</td>
             </tr>
