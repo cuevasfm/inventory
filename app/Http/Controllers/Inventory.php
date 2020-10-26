@@ -8,6 +8,7 @@ use App\Models\Part;
 use App\Models\Category;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\ViewErrorBag;
 
 class Inventory extends Controller
 {
@@ -49,5 +50,13 @@ class Inventory extends Controller
         $parts->user_id =  Auth::id();
         $parts->save();
         return redirect('/inventory');
+    }
+    public function edit($id)
+    {
+        return view('inventory.edit', [
+            'parts' => Part::find($id),
+            'categories' => Category::all(),
+            'brands' => Brand::all()
+        ]);
     }
 }

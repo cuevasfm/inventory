@@ -12,11 +12,11 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Inventario
+                        Inventarios
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/inventory/new">Nuevo</a>
-                        <a class="dropdown-item" href="/inventory">Lista</a>
+                        <a class="dropdown-item" href="/inventories">Lista</a>
+                        <a class="dropdown-item" href="/inventories/create">Nuevo</a>
                         <a class="dropdown-item" href="#">Asignaciones</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">CPU</a>

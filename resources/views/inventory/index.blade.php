@@ -16,6 +16,7 @@
                 <th scope="col">Marca</th>
                 <th scope="col">Model</th>
                 <th scope="col">S/N</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@
                 <td>{{$part->name_brand}}</td>
                 <td>{{$part->model}}</td>
                 <td>{{$part->sn}}</td>
+                <td><a href="/inventory/{{$part->id}}/edit" class="btn btn-primary btn-sm">Edit</a> <a href="#"class="btn btn-primary btn-sm">To Assign</a></td>
             </tr>
             @endforeach
         </tbody>

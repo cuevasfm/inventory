@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\Employee;
-use App\Models\Part;
+use App\Models\Inventory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -54,7 +55,7 @@ class EmployeeController extends Controller
             ]
         );
         $employees = new Employee();
-        $employees->name_employee = $request->get('name_employee');
+        $employees->name_employee = mb_strtoupper($request->get('name_employee'));
         $employees->email_employee = $request->get('email_employee');
         $employees->save();
         return redirect('/employee');
@@ -68,7 +69,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $employees = Employee::find($id);
+        return $employees->toArray();
     }
 
     /**
@@ -109,7 +111,7 @@ class EmployeeController extends Controller
             ]
         );
         $employees = Employee::find($id);
-        $employees->name_employee = $request->get('name_employee');
+        $employees->name_employee = mb_strtoupper($request->get('name_employee'));
         $employees->email_employee = $request->get('email_employee');
         $employees->save();
         return redirect('/employee');
@@ -129,13 +131,59 @@ class EmployeeController extends Controller
     public function assignment($id)
     {
         return view('employees/assignment', [
-            'parts' => Part::where('employee_id', $id)
-                ->join('brands', 'brands.id', '=', 'parts.brand_id')
-                ->join('categories', 'categories.id', '=', 'parts.category_id')
-                ->select('parts.*', 'brands.name_brand', 'categories.name_category')
+            'inventories' => Inventory::where('employee_id', $id)
+                ->join('brands', 'brands.id', '=', 'inventories.brand_id')
+                ->join('categories', 'categories.id', '=', 'inventories.category_id')
+                ->select('inventories.*', 'brands.name_brand', 'categories.name_category')
                 ->get(),
             'data' => Employee::find($id),
-            'assignments' => Assignment::all()->sortByDesc("id")
+            'assignments' => Assignment::where('id_employee', '=', $id)->get()
         ]);
+    }
+    public function toAssign($id)
+    {
+        return view('employees.toassign', [
+            'inventories' => Inventory::select('inventories')
+                ->join('categories', 'inventories.category_id', '=', 'categories.id')
+                ->join('brands', 'inventories.brand_id', '=', 'brands.id')
+                ->select('inventories.*', 'categories.name_category', 'brands.name_brand')
+                ->where('employee_id', '=', NULL)
+                ->get(),
+            'employee' => $id
+        ]);
+    }
+    public function toAssignStore(Request $request, $id)
+    {
+        $datos = $request->get('d');
+        foreach ($datos as $dato) {
+            $inventory = Inventory::find($dato);
+            $inventory->employee_id = $id;
+            $inventory->save();
+
+            $assignment = new Assignment();
+            $assignment->id_part = $dato;
+            $assignment->id_employee = $id;
+            $assignment->state = 'ASSIGNED';
+            $assignment->save();
+        }
+        return redirect('/employee/' . $id . '/assignment');
+    }
+    public function unAssign($id, $employee)
+    {
+        $inventory = Inventory::find($id);
+        $inventory->employee_id = null;
+        $inventory->save();
+
+        $assignment = new Assignment();
+        $assignment->id_part = $id;
+        $assignment->id_employee = $employee;
+        $assignment->state = 'RETURN';
+        $assignment->save();
+        return redirect('/employee/' . $employee . '/assignment');
+    }
+    public function deploy($id)
+    {
+        $employees = Employee::find($id);
+        return $employees->toArray();
     }
 }
