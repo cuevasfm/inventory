@@ -8,6 +8,8 @@ Pequeño proyecto realizado con laravel 8 para la administración de inventario 
 
 - Registro de empleados
 - Registro de equipos
+- Registro de marcas
+- Registro de categorías
 - Asignación de equios / herramientas
 
 
