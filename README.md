@@ -4,7 +4,7 @@
 
 ## Inventory
 
-Pequeño proyecto para la administración de inventario de equipo y herramienta de una empresa
+Pequeño proyecto realizado con laravel 8 para la administración de inventario de equipo y herramienta de una empresa
 
 - Registro de empleados
 - Registro de equipos
