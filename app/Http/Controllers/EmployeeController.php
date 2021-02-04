@@ -137,7 +137,9 @@ class EmployeeController extends Controller
                 ->select('inventories.*', 'brands.name_brand', 'categories.name_category')
                 ->get(),
             'data' => Employee::find($id),
-            'assignments' => Assignment::where('id_employee', '=', $id)->get()
+            'assignments' => Assignment::where('id_employee', '=', $id)
+            ->join('inventories', 'assignments.id_part','=','inventories.id')
+            ->get()
         ]);
     }
     public function toAssign($id)

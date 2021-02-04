@@ -15,9 +15,9 @@
                         Inventarios
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/inventories">Lista</a>
-                        <a class="dropdown-item" href="/inventories/create">Nuevo</a>
-                        <a class="dropdown-item" href="#">Asignaciones</a>
+                        <a class="dropdown-item" href="/inventories">Inventario</a>
+                        <a class="dropdown-item" href="/inventories/create">Registrar Nuevo</a>
+                        <!-- <a class="dropdown-item" href="#">Asignaciones</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">CPU</a>
                         <a class="dropdown-item" href="#">Laptop</a>
@@ -27,7 +27,7 @@
                         <a class="dropdown-item" href="#">Monitores</a>
                         <a class="dropdown-item" href="#">Redes</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Otros</a>
+                        <a class="dropdown-item" href="#">Otros</a> -->
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -35,8 +35,8 @@
                         Empleados
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/employee">Lista</a>
-                        <a class="dropdown-item" href="/employee/create">Nuevo</a>
+                        <a class="dropdown-item" href="/employee">Empleados</a>
+                        <a class="dropdown-item" href="/employee/create">Registrar Empleado</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

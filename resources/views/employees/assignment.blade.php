@@ -1,15 +1,16 @@
 @extends('layouts.base')
 @section('content')
-<div class="row">
-    <h1>Resguardo de equipo</h1>
-</div>
-<div class="row">
-    <div class="col">
-        <a class="btn btn-primary" href="/employee">Ver Empleados </a>
-    </div>
-</div>
-<br>
 <div class="container">
+    <div class="row">
+        <h1>Resguardo de equipo</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-primary" href="/employee">Ver Empleados </a>
+        </div>
+    </div>
+    <br>
+
     <div class="row">
         <div class="col">
             <dl class="row">
@@ -34,16 +35,16 @@
         </div>
     </div>
     <div class="row">
-        <table class="table table-sm">
+        <table class="table table-sm table-bordered border-primary table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nombre Parte</th>
-                    <th scope="col">Categoría</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Model</th>
+                    <th scope="col">NOMBRE DE PARTE</th>
+                    <th scope="col">CATEGORÍA</th>
+                    <th scope="col">MARCA</th>
+                    <th scope="col">MODEL</th>
                     <th scope="col">S/N</th>
-                    <th scope="col">S/N</th>
+                    <th scope="col">ACCIONES</th>
                 </tr>
             </thead>
             <tbody>
@@ -78,17 +79,18 @@
     </div>
     <div class="row">
         <div class="col">
-            <h3>Histórico</h3>
+            <h3>Historía de Asignaciones</h3>
         </div>
     </div>
     <div class="row">
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th scope="col">id_assignment</th>
-                    <th scope="col">id_part</th>
-                    <th scope="col">state</th>
-                    <th scope="col">created_at</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">ID EQUIPO</th>
+                    <th scope="col">NOMBRE PARTE</th>
+                    <th scope="col">ASIGNADO/DESASIGNADO</th>
+                    <th scope="col">FECHA DE ASIGNACIÓN</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,7 +98,8 @@
                 <tr>
                     <th scope="row">{{$assignment->id}}</th>
                     <td>{{$assignment->id_part}}</td>
-                    <td>{{$assignment->state}}</td>
+                    <td>{{$assignment->inventory_name}}</td>
+                    <td>{{$assignment->state == 'ASSIGNED' ? 'ASIGNADO' : 'DESASIGNADO' }} </td>
                     <td>{{$assignment->created_at}}</td>
                 </tr>
                 @endforeach
