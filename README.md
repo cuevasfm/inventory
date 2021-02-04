@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://dospuntas.com.mx/mc/img/inventorylogo.jpg" width="600"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://dospuntas.com.mx/mc/img/inventorylogo.png" width="600"></a></p>
 
 
 
