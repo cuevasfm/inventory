@@ -1,21 +1,23 @@
-<p align="center"><img src="https://dospuntas.com.mx/mc/img/inventorylogo.png" width="600"></p>
+<p align="center"><img  src="https://dospuntas.com.mx/mc/img/inventorylogo.png"  width="600"></p>
+
+  
+  
+
+## Inventory 
 
 
+Pequeño proyecto realizado con Laravel 8 para la administración de inventario de equipo y herramienta de una empresa
 
-## Inventory
-
-Pequeño proyecto realizado con laravel 8 para la administración de inventario de equipo y herramienta de una empresa
-
+  
 - Registro de empleados
 - Registro de equipos
 - Registro de marcas
 - Registro de categorías
-- Asignación de equios / herramientas
+- Asignación de equipos / herramientas
+- Registro de actividades de mantenimiento o reparaciones, Bitácora
+  
+  
 
+## Características futuras
 
-## Caracteristicas futuras
-
-- Registro de fallas de equipo
-- Registro de reparaciones
-- Registro de actualizaciones de hardware
-- Baja de equipo / herramienta
+- Baja de equipo / herramienta (venta o falla) 
