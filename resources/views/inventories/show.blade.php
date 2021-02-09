@@ -1,16 +1,17 @@
 @extends('layouts.base')
 @section('content')
-<div class="row">
-    <div class="col">
-        <h1 class="display-4">Artículo de inventario: {{$id}}</h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <a class="btn btn-primary" href="/inventories">Listado </a>
-    </div>
-</div>
 <div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-4">Artículo de inventario: {{$id}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-primary" href="/inventories">Listado </a>
+        </div>
+    </div>
+    <br>
     <div class="row">
         <div class="col">
             <div class="shadow p-3 mb-5 bg-white rounded">
@@ -58,12 +59,35 @@
                         @endif
 
                     </dd>
-
                     @endforeach
                 </dl>
             </div>
         </div>
     </div>
+    @if($activity_logs->count() > 0)
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">TYPE</th>
+                    <th scope="col">DESCRIPTION</th>
+                    <th scope="col">FECHA</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($activity_logs as $activity_log)
+                <tr>
+                    <th scope="row">{{$activity_log->id}}</th>
+                    <td>{{$activity_log->type}}</td>
+                    <td>{{$activity_log->description}}</td>
+                    <td><?= strftime('%d %b %Y', strtotime($activity_log->date)) ?>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endif
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

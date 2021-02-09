@@ -19,6 +19,7 @@ class CreateActivityLogsTable extends Migration
             $table->enum('type', ['BACKUP', 'DAMAGED EQUIPMENT', 'HARDWARE UPGRADE', 'HARDWARE DOWNGRADE', 'MAINTENANCE', 'REPAIR']);
             $table->string('description', 400);
             $table->date('date')->nullable();
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
     }

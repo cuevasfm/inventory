@@ -92,7 +92,11 @@ class InventoryController extends Controller
                 ->where('inventories.id', $id)
                 ->select('inventories.*', 'brands.name_brand', 'categories.name_category', 'employees.name_employee', 'employees.id as employee_id')
                 ->get(),
-            'id' => $id
+            'id' => $id,
+            'activity_logs' => ActivityLog::select('id', 'type', 'description', 'date')
+                ->where('inventories_id', $id)
+                ->orderBy('id', 'desc')
+                ->get()
         ]);
     }
 
@@ -201,7 +205,7 @@ class InventoryController extends Controller
     public function activitylog_all()
     {
         return view('inventories/activitylog/index', [
-            'activitylogs' => ActivityLog::all()
+            'activitylogs' => ActivityLog::all()->sortByDesc('id')
         ]);
     }
 
@@ -210,5 +214,21 @@ class InventoryController extends Controller
         return view('inventories/activitylog/create', [
             'inventories_id' => $id
         ]);
+    }
+
+    public function activitylog_store(Request $request, $id)
+    {
+        try {
+            $activitylog = new ActivityLog();
+            $activitylog->inventories_id = $id;
+            $activitylog->type = $request->get('type');
+            $activitylog->date = $request->get('date');
+            $activitylog->description = mb_strtoupper($request->get('description'));
+            $activitylog->user_id =  Auth::id();
+            $activitylog->save();
+            return redirect('/inventories/' . $id);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }

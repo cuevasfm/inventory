@@ -20,7 +20,7 @@
                 @foreach($activitylogs as $activitylog)
                 <tr>
                     <th scope="row">{{$activitylog->id}}</th>
-                    <td>{{$activitylog->inventories_id}}</td>
+                    <td><a href="/inventories/{{$activitylog->inventories_id}}">{{$activitylog->inventories_id}}</a></td>
                     <td>{{$activitylog->type}}</td>
                     <td>{{$activitylog->description}}</td>
                     <td>{{$activitylog->date}}</td>
