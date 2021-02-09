@@ -23,16 +23,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::middleware(['auth:sanctum', 'verified'])->get('/inventory', [Inventory::class, 'index']);
+/* Route::middleware(['auth:sanctum', 'verified'])->get('/inventory', [Inventory::class, 'index']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/inventory/new', [Inventory::class, 'new']);
 Route::middleware(['auth:sanctum', 'verified'])->post('/inventory/new', [Inventory::class, 'store']);
-Route::get('inventory/{id}/edit', [Inventory::class, 'edit'])->Middleware('auth');
+Route::get('inventory/{id}/edit', [Inventory::class, 'edit'])->Middleware('auth'); */
 //invenrories
+Route::resource('/inventories', InventoryController::class)->middleware('auth');
 Route::post('/inventories/{id}/uploadphoto', [InventoryController::class, 'uploadphoto'])->middleware('auth');
-Route::resource('/inventories', InventoryController::class)->Middleware('auth');
+Route::get('/inventories/delete/image/{id}/{img}', [InventoryController::class, 'deletephoto'])->middleware('auth');
 Route::get('/inventories/deploy/{id}', [InventoryController::class, 'deploy'])->middleware('auth');
-
-
+//activity_log
+Route::get('/inventories/activitylog/all', [InventoryController::class, 'activitylog_all'])->middleware('auth');
+Route::get('/inventories/activitylog/{id}/create', [InventoryController::class, 'activitylog_create'])->middleware('auth');
+Route::post('/inventories/activitylog/create', [InventoryController::class, 'deploy'])->middleware('auth');
 //categories
 Route::middleware(['auth:sanctum', 'verified'])->get('/config/categories', [CategoryController::class, 'index']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/config/categories/new', [CategoryController::class, 'create']);
@@ -57,6 +60,9 @@ Route::get('employee/{id}/toassign', [EmployeeController::class, 'toassign'])->m
 Route::put('employee/{id}/toassign', [EmployeeController::class, 'toAssignStore'])->middleware('auth');
 Route::get('employee/{id}/{employee}/unassign', [EmployeeController::class, 'unAssign'])->middleware('auth');
 Route::get('employee/{id}/deploy', [EmployeeController::class, 'deploy'])->middleware('auth');
+
+//json
+Route::get('/inventories/data/json', [InventoryController::class, 'inventories_json'])->middleware('auth');
 
 
 //Route::middleware(['auth:sanctum', 'verified'])->resource('/config/categories', [CategoryController::class, '']);

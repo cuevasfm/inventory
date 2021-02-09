@@ -17,7 +17,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/inventories">Inventario</a>
                         <a class="dropdown-item" href="/inventories/create">Registrar Nuevo</a>
-                        <!-- <a class="dropdown-item" href="#">Asignaciones</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/inventories/activitylog/all">Bitácora</a>
+                        <!-- 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">CPU</a>
                         <a class="dropdown-item" href="#">Laptop</a>

@@ -54,7 +54,7 @@
                         </button>
                         @else
                         <img src="/images/{{$inventory->img}}" class="img-fluid" alt="Responsive image">
-                        <a href="#" class="btn btn-danger">ELIMINAR FOTO</a>
+                        <a href="/inventories/delete/image/{{$id}}/{{$inventory->img}}" class="btn btn-danger">ELIMINAR FOTO</a>
                         @endif
 
                     </dd>

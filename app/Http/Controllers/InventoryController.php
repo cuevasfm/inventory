@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Inventory;
 use App\Models\Category;
 use App\Models\Brand;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -51,23 +53,27 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        $inventories = new  Inventory();
-        $inventories->inventory_name = mb_strtoupper($request->get('inventory_name'));
-        $inventories->category_id = $request->get('category_id');
-        $inventories->brand_id = $request->get('brand_id');
-        $inventories->model = mb_strtoupper($request->get('model'));
-        $inventories->sn = mb_strtoupper($request->get('sn'));
-        $inventories->processor = mb_strtoupper($request->get('processor'));
-        $inventories->memory = mb_strtoupper($request->get('memory'));
-        $inventories->storage = mb_strtoupper($request->get('storage'));
-        $inventories->wifi = $request->get('wifi');
-        $inventories->resolution = mb_strtoupper($request->get('resolution'));
-        $inventories->screen_size = mb_strtoupper($request->get('screen_size'));
-        $inventories->date_purchase = $request->get('date_purchase');
-        $inventories->data_add = mb_strtoupper($request->get('data_add'));
-        $inventories->user_id =  Auth::id();
-        $inventories->save();
-        return redirect('/inventories');
+        try {
+            $inventories = new  Inventory();
+            $inventories->inventory_name = mb_strtoupper($request->get('inventory_name'));
+            $inventories->category_id = $request->get('category_id');
+            $inventories->brand_id = $request->get('brand_id');
+            $inventories->model = mb_strtoupper($request->get('model'));
+            $inventories->sn = mb_strtoupper($request->get('sn'));
+            $inventories->processor = mb_strtoupper($request->get('processor'));
+            $inventories->memory = mb_strtoupper($request->get('memory'));
+            $inventories->storage = mb_strtoupper($request->get('storage'));
+            $inventories->wifi = $request->get('wifi');
+            $inventories->resolution = mb_strtoupper($request->get('resolution'));
+            $inventories->screen_size = mb_strtoupper($request->get('screen_size'));
+            $inventories->date_purchase = $request->get('date_purchase');
+            $inventories->data_add = mb_strtoupper($request->get('data_add'));
+            $inventories->user_id =  Auth::id();
+            $inventories->save();
+            return redirect('/inventories');
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     /**
@@ -167,5 +173,42 @@ class InventoryController extends Controller
 
         return redirect('/inventories/' . $id);
         return 'Image save successfully: ' . $id . $filename2;
+    }
+
+    public function deletephoto($id, $img)
+    {
+        $inventories = Inventory::find($id);
+        $inventories->img = null;
+        $inventories->save();
+        echo public_path('images/') . $img;
+        unlink(public_path('images/') . $img);
+        return redirect('/inventories/' . $id);
+        return 'Image delete successfully: ' . $id;
+    }
+
+    public function inventories_json()
+    {
+        $json_data = Inventory::select('inventories')
+            ->leftjoin('employees', 'inventories.employee_id', '=', 'employees.id')
+            ->join('brands', 'brands.id', '=', 'inventories.brand_id')
+            ->join('categories', 'categories.id', '=', 'inventories.category_id')
+            ->select('inventories.*', 'brands.name_brand', 'categories.name_category', 'employees.name_employee', 'employees.id as employee_id')
+            ->orderBy('inventories.id', 'desc')
+            ->get();
+        return response()->json($json_data);
+    }
+
+    public function activitylog_all()
+    {
+        return view('inventories/activitylog/index', [
+            'activitylogs' => ActivityLog::all()
+        ]);
+    }
+
+    public function activitylog_create($id)
+    {
+        return view('inventories/activitylog/create', [
+            'inventories_id' => $id
+        ]);
     }
 }

@@ -8,9 +8,10 @@
             </h1>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col">
-            <form method="POST" action="/inventories/">
+            <form method="POST" action="/inventories">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-12">

@@ -10,44 +10,84 @@
             <a class="btn btn-primary" href="/inventories/create">Registrar </a>
         </div>
     </div>
+
+
     <div class="row">
-        <table class="table table-sm table-bordered border-primary table-hover" style="font-size: 16px;">
-            <thead align="center">
+        <table id="table" data-show-pagination-switch="true" data-show-columns="true" data-show-columns-toggle-all="true" data-pagination="true" data-show-toggle="true" data-show-fullscreen="true" data-page-list="[10, 25, 50, 100, all]" data-toggle="table" data-url="/inventories/data/json" data-search="true" data-buttons-class="primary" data-pagination-v-align="both" data-auto-refresh="true" data-toolbar="#toolbar" data-trim-on-search="false" data-locale="es-MX" style="font-size: 12px;">
+            <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre Parte</th>
-                    <th scope="col">Categoría</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">S/N</th>
-                    <th scope="col">Procesador</th>
-                    <th scope="col">Memoria</th>
-                    <th scope="col">Almacenamiento</th>
-                    <th scope="col">Asignado</th>
-                    <th scope="col"></th>
+                    <th data-field="id">ID</th>
+                    <th data-field="inventory_name" data-formatter="operateInventoryName" data-events="operateEvents">NOMBRE EN INVENTARIO</th>
+                    <th data-field="name_category">CATEGORÍA</th>
+                    <th data-field="name_brand">MARCA</th>
+                    <th data-field="model">MODEL</th>
+                    <th data-field="sn">No. SERIE</th>
+                    <th data-field="processor">PROCESADOR</th>
+                    <th data-field="memory">MEMORIA</th>
+                    <th data-field="storage">ALMACENAMIENTO</th>
+                    <th data-formatter="operateEmployee" data-events="operateEvents">EMPLEADO</th>
+                    <th data-formatter="operateEdit" data-events="operateEvents"></th>
+                    <th data-formatter="operateActivityLog" data-events="operateEvents"></th>
                 </tr>
             </thead>
-            <tbody style="font-size: 11px;">
-                @foreach($inventories as $inventory)
-                <tr>
-                    <th scope="row"><a href="/inventories/{{$inventory->id}}">{{$inventory->id}}</a></th>
-                    <td><a href="/inventories/{{$inventory->id}}">{{$inventory->inventory_name}}</a></td>
-                    <td>{{$inventory->name_category}}</td>
-                    <td>{{$inventory->name_brand}}</td>
-                    <td>{{$inventory->model}}</td>
-                    <td>{{$inventory->sn}}</td>
-                    <td>{{$inventory->processor}}</td>
-                    <td>{{$inventory->memory}}</td>
-                    <td>{{$inventory->storage}}</td>
-                    <td><a href="/employee/{{$inventory->employee_id}}/assignment">{{$inventory->name_employee}}</a></td>
-                    <td><a href="/inventories/{{$inventory->id}}/edit" class="btn btn-primary btn-sm">Editar</a></td>
-                </tr>
-                @endforeach
-            </tbody>
         </table>
     </div>
 </div>
 
+<script>
+    function operateInventoryName(value, row, index) {
+        return [
+            '<a class="inventory_name" href="javascript:void(0)" title="Like">',
+            '' + row.inventory_name + '',
+            '</a>  '
+        ].join('')
+    }
 
+    function operateEmployee(value, row, index) {
+        if (row.name_employee != null) {
+            return [
+                '<a class="employee" href="javascript:void(0)" title="Like">',
+                '' + row.name_employee + '',
+                '</a>  '
+            ].join('')
+        }else{
+            return [
+                'Sin Usuario',
+            ].join('')
+        }
+    }
+
+    function operateEdit(value, row, index) {
+        return [
+            '<a class="edit btn btn-light btn-sm" href="javascript:void(0)" title="Editar">',
+            '✏️',
+            '</a>  '
+        ].join('')
+    }
+
+    function operateActivityLog(value, row, index) {
+        return [
+            '<a class="activity_log btn btn-light btn-sm" href="javascript:void(0)" title="Bitácora del Inventario">',
+            '🔧',
+            '</a>  '
+        ].join('')
+    }
+
+    window.operateEvents = {
+        'click .employee': function(e, value, row, index) {
+            window.open('/employee/' + row.employee_id + '/assignment', '_self')
+        },
+        'click .inventory_name': function(e, value, row, index) {
+            window.open('/inventories/' + row.id, '_self')
+        },
+        'click .edit': function(e, value, row, index) {
+            window.open('/inventories/' + row.id + '/edit', '_self')
+        }
+        ,
+        'click .activity_log': function(e, value, row, index) {
+            window.open('/inventories/activitylog/' + row.id + '/create', '_self')
+        }
+    }
+</script>
 
 @endsection
