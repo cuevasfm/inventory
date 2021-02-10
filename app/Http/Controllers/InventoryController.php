@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class InventoryController extends Controller
 {
@@ -40,8 +41,12 @@ class InventoryController extends Controller
     public function create()
     {
         return view('inventories/create', [
-            'categories' => Category::all(),
-            'brands' => Brand::all()
+            'categories' => DB::table('categories')
+                ->orderBy('name_category', 'asc')
+                ->get(),
+            'brands' => DB::table('brands')
+                ->orderBy('name_brand', 'asc')
+                ->get()
         ]);
     }
 

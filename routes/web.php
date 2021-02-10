@@ -70,3 +70,4 @@ Route::get('/inventories/data/json', [InventoryController::class, 'inventories_j
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+

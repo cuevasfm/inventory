@@ -83,7 +83,7 @@
         </div>
     </div>
     <div class="row">
-        <table class="table table-sm table-bordered border-primary table-hover">
+        <table class="table table-sm table-bordered border-primary table-hover" style="font-size: 12px;">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
