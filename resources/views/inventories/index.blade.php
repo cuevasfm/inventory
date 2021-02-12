@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row">
-        <h1>Partes registradas</h1>
+        <h1 class="display-4">Inventario registrado</h1>
     </div>
     <div class="row">
         <div class="col">
@@ -13,19 +13,18 @@
 
 
     <div class="row">
-        <table id="table" data-show-pagination-switch="true" data-show-columns="true" data-show-columns-toggle-all="true" data-pagination="true" data-show-toggle="true" data-show-fullscreen="true" data-page-list="[10, 25, 50, 100, all]" data-toggle="table" data-url="/inventories/data/json" data-search="true" data-buttons-class="primary" data-pagination-v-align="both" data-auto-refresh="true" data-toolbar="#toolbar" data-trim-on-search="false" data-locale="es-MX" style="font-size: 12px;">
+        <table id="table" data-show-pagination-switch="true" data-show-columns="true" data-show-columns-toggle-all="true" data-pagination="true" data-show-toggle="true" data-show-fullscreen="true" data-page-list="[10, 25, 50, 100, all]" data-toggle="table" data-url="/inventories/data/json" data-search="true" data-buttons-class="primary" data-pagination-v-align="both" data-auto-refresh="true" data-toolbar="#toolbar" data-trim-on-search="true" data-locale="es-MX" data-show-export="true" data-show-refresh="true" data-auto-refresh="true" data-mobile-responsive="true" data-check-on-init="true" style="font-size: 12px;">
             <thead>
                 <tr>
-                    <th data-field="id">ID</th>
-                    <th data-field="inventory_name" data-formatter="operateInventoryName" data-events="operateEvents">NOMBRE EN INVENTARIO</th>
-                    <th data-field="name_category">CATEGORÍA</th>
-                    <th data-field="name_brand">MARCA</th>
-                    <th data-field="model">MODEL</th>
-                    <th data-field="sn">No. SERIE</th>
-                    <th data-field="processor">PROCESADOR</th>
-                    <th data-field="memory">MEMORIA</th>
-                    <th data-field="storage">ALMACENAMIENTO</th>
-                    <th data-formatter="operateEmployee" data-events="operateEvents">EMPLEADO</th>
+                    <th data-field="id" data-sortable="true">ID</th>
+                    <th data-field="inventory_name" data-formatter="operateInventoryName" data-events="operateEvents" data-sortable="true">NOMBRE EN INVENTARIO</th>
+                    <th data-field="name_category" data-sortable="true">CATEGORÍA</th>
+                    <th data-field="name_brand" data-sortable="true">MARCA</th>
+                    <th data-field="model" data-sortable="true">MODEL</th>
+                    <th data-field="sn" data-sortable="true">No. SERIE</th>
+                    <th data-field="processor" data-sortable="true">PROCESADOR</th>
+                    <th data-field="memory" data-sortable="true">MEMORIA</th>
+                    <th data-formatter="operateEmployee" data-events="operateEvents" data-sortable="true">EMPLEADO</th>
                     <th data-formatter="operateEdit" data-events="operateEvents"></th>
                     <th data-formatter="operateActivityLog" data-events="operateEvents"></th>
                 </tr>
@@ -50,7 +49,7 @@
                 '' + row.name_employee + '',
                 '</a>  '
             ].join('')
-        }else{
+        } else {
             return [
                 'Sin Usuario',
             ].join('')
@@ -82,8 +81,7 @@
         },
         'click .edit': function(e, value, row, index) {
             window.open('/inventories/' + row.id + '/edit', '_self')
-        }
-        ,
+        },
         'click .activity_log': function(e, value, row, index) {
             window.open('/inventories/activitylog/' + row.id + '/create', '_self')
         }

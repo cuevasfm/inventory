@@ -62,13 +62,27 @@
         </table>
     </div>
     <hr>
-
-    <div class="card-columns">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach($inventories as $inventory)
+        @if($inventory->img != null)
+        <div class="col">
+            <div class="card">
+                <img src="/images/{{$inventory->img}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">#{{$inventory->id}} </h5>
+                    <p class="card-text">{{$inventory->inventory_name}} </p>
+                </div>
+            </div>
+        </div>
+        @endif
+        @endforeach
+    </div>
+    <!--     <div class="card-columns">
         @foreach($inventories as $inventory)
         @if($inventory->img != null)
         <div class="card p-3">
             <img src="/images/{{$inventory->img}}" class="card-img-top" alt="...">
-            <div class="card-body">
+            <div class="card-body" style="font-size: 10px;">
                 <p>#{{$inventory->id}} {{$inventory->inventory_name}} </p>
             </div>
         </div>
@@ -76,7 +90,7 @@
 
         @endforeach
 
-    </div>
+    </div> -->
     <div class="row">
         <div class="col">
             <h3>Historía de Asignaciones</h3>

@@ -83,7 +83,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="inputCity">Especificaciones adicionales</label>
+   ----                     <label for="inputCity">Especificaciones adicionales</label>--*
                         <textarea class="form-control" id="exampleFormControlTextarea1" name="data_add" rows="3"></textarea>
                         <!-- <input type="text" class="form-control" id="inputCity" name="data_add"> -->
                     </div>
