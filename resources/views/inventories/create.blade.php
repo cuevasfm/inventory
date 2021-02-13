@@ -16,7 +16,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputInventoryName">Nombre de parte</label>
-                        <input type="text" class="form-control" id="inputInventoryName" placeholder="IMAC 27, LAPTOP TOSHIBA, LAPTOP DELL, MOUSE INALAMBRICO, ETC." name="inventory_name" required>
+                        <input type="text" class="form-control" id="inputInventoryName" placeholder="IMAC 27, LAPTOP TOSHIBA, LAPTOP DELL, MOUSE INALAMBRICO, ETC." name="inventory_name" required autofocus>
                     </div>
                 </div>
                 <div class="form-row">

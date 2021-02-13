@@ -6,7 +6,7 @@
     </div>
     <br>
     <div class="row">
-        <table class="table table-sm table-bordered border-primary table-hover">
+        <table class="table table-sm table-bordered border-primary table-hover table-responsive">
             <thead>
                 <tr>
                     <th scope="col">#</th>

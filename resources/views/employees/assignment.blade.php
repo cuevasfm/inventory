@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="row">
-        <table class="table table-sm table-bordered border-primary table-hover">
+        <table class="table table-sm table-bordered table-hover table-responsive-md">
             <thead>
                 <tr>
                     <th scope="col">#</th>
