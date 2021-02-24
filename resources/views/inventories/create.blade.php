@@ -88,7 +88,7 @@
                         <!-- <input type="text" class="form-control" id="inputCity" name="data_add"> -->
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary">Guardar 💾</button>
             </form>
         </div>
     </div>

@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <a class="btn btn-primary" href="/inventories/create">Registrar </a>
+            <a class="btn btn-primary" href="/inventories/create">Registrar 🆕</a>
         </div>
     </div>
 
